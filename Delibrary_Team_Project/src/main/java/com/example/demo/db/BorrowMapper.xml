@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="borrow">
+
+	<insert id="insertBorrow" parameterType="borrowVO">
+		insert into borrow
+		values(#{BOR_NO},#{BOR_DATE},#{RETURN_DATE},#{RETURN_OK},#{CUST_NO},#{B_NO})
+	</insert>
+	<!-- <delete id="deleteBorrow" parameterType="borrowVO"> delete borrow where 
+		BOR_NO=#{BOR_NO} </delete> -->
+	<select id="getNextNo" resultType="java.lang.Integer">
+		select nvl(max(BOR_NO),0)+1 from borrow
+	</select>
+
+	<!-- 
+	<update id="updateBorrow">
+		update Borrow set B_COUNT=#{B_COUNT}-1 where B_NO=#{B_NO}
+	</update>
+	 -->
+	
+</mapper>
+

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="main">
+
+	<!-- 홈화면  -->
+	<select id="getStaffRecommend" resultType="bookVO">
+		select b_no, b_title, b_writer, b_image from book where b_no between 1 and 12
+	</select>
+	
+	<select id="getNewRecommend" resultType="bookVO">
+		select rownum, b_no, b_title, b_writer, b_image from (select b_no, b_title, b_writer, b_image from book order by b_year) <![CDATA[where rownum <= 12]]>
+	</select>
+	
+	<select id="getHomePost" resultType="postVO">
+		select rownum, p_id, p_no, p_title, p_regdate from (select p_id, p_no, p_title, p_regdate from post where p_no like #{group}||'%') <![CDATA[where rownum <= 3]]>
+	</select>
+
+	<!-- 게시판 게시글 가져오기 -->
+	<select id="getListPost" resultType="postVO">
+		select * from post where p_no like #{group}||'%'
+	</select>
+	
+	<!-- 페이징 처리를 위해 총 게시물 갯수 구해오기 -->
+	<select id="getTotalCount" resultType="Integer">
+		select count(*) from post where p_no like #{group}||'%'
+	</select>
+</mapper>
