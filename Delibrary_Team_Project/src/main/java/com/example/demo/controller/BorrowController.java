@@ -46,14 +46,14 @@ public class BorrowController {
 		this.bookdao = bookdao;
 	}
 	
-	//대여 기능
+	//책대여
 	@RequestMapping(value = "/insertBorrow", 
 			produces = "application/json;charset=utf8")
 	@ResponseBody
 	public String insertBorrow(HttpSession session, HttpServletRequest request)  {
 		
 		int cust_no = Integer.parseInt(request.getParameter("cust_no"));
-		int b_no = Integer.parseInt(request.getParameter("b_no"));
+		int b_no = 20;
 		String String_BOR_DATE = request.getParameter("BOR_DATE");
 		java.sql.Date BOR_DATE = java.sql.Date.valueOf(String_BOR_DATE);
 		Calendar cal = Calendar.getInstance();
@@ -75,10 +75,10 @@ public class BorrowController {
 		BorrowVO b = new BorrowVO();
 		int bor_no = dao.getNextNo();
 		String return_ok ="Y";
-		//현재시각 기준으로 시간 가져오기
+		//현재날짜꺼내기.
        // java.util.Calendar cal = java.util.Calendar.getInstance();      
         //java.util.Calendar cal2 = java.util.Calendar.getInstance();
-		//util.date 자바 시간 더하기
+		//util.date �옄諛� �떆媛� �뜑�븯湲�
         //cal2.add(Calendar.DATE,15);
 		//return_date.add(Calendar.DATE,15);
 
@@ -90,11 +90,11 @@ public class BorrowController {
 		b.setRETURN_OK(return_ok);
 		b.setCUST_NO(cust_no);
 		b.setB_NO(b_no);
-		int re2 = bookdao.update(b_no);
-		System.out.println("ddd"+re2);
+		//int re2 = bookdao.update(b_no);
+		//System.out.println("ddd"+re2);
 
 		int re = dao.insertBorrow(b);
-		//책재고감소
+		//梨낆옱怨좉컧�냼
 		Gson gson = new Gson();
 		return gson.toJson(new Message(re+""));
 	}

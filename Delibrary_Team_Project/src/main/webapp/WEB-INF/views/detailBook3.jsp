@@ -24,14 +24,11 @@
   <title>도서정보 - 딜리브러리</title>
 	
   <style>
-  
-  
     /* 내서재 추가 / 바로대여*/
     .buttonadd {
       border-radius: 4px;
       background-color: #F2F2F2;
       color: black;
-      
       text-align: center;
       font-size: 20px;
       width: 30%;
@@ -292,8 +289,7 @@ _Example:_
 
 /* For this demo only */
 body { font-family: system-ui, sans-serif; padding: 1rem; }
-/*버튼크기 
-button, details { width: 6rem; }*/
+button, details { width: 47rem; }
 button { font-family: inherit; font-size: inherit; }
 details {
   height: var(--collapsed);
@@ -378,7 +374,6 @@ summary + * {
 var FOL_NO =1;
 let cust_no = Number(${cust_no});
 
-//책소개 아코디안
   function setDetailsHeight(selector, wrapper = document) {
 	const setHeight = (detail, open = false) => {
 		detail.open = open;
@@ -432,7 +427,7 @@ $(function(){
 	var insertPost = function(){
 		
 		var P_TITLE="${b.b_title }";
-		
+
 		//폴더값 가져와지는지 확인용
 		//alert(P_TITLE)
 		var data ={"FOL_NO":FOL_NO,"P_TITLE":P_TITLE,"cust_no":cust_no }
@@ -479,10 +474,6 @@ $(function(){
 
 	//대여버튼
 	$('#borrow').click(function(){
-		if (cust_no=null){
-			alert("로그인해주세요");
-			}
-		
 		
 		$('#dialog-borrow').dialog({
 		modal: true, 
@@ -501,8 +492,7 @@ $(function(){
 							var count = eval(${b.b_count });
 							 var b_no = eval(${b.b_no });
 							 var cust_no = eval(${cust_no });
-							 alert(cust_no);
-							 var data= {"BOR_DATE" : BOR_DATE, "cust_no":cust_no, }
+							 var data= {"BOR_DATE" : BOR_DATE, "b_no": b_no, "cust_no":cust_no, }
 							if(count <1){
 								alert("대여가능한 도서가 없습니다")
 							}else{
@@ -518,10 +508,10 @@ $(function(){
 									//data: "cust_no="+${cust_no }}
 									type: "POST",
 									success:function(data){
-										alert("대출완료")
+										//alert("대출완료")
 									},
 									error : function(){
-										alert("에러")		
+										//alert("에러")		
 									}
 									});	
 							}
@@ -569,7 +559,6 @@ $(function(){
   </head>
 
 <body>
-	
 	<input id="query" value="${query}" type="hidden">
 
 	<nav class="navbar sticky-top navbar-expand-sm navbar-dark bg-dark p-0">
@@ -713,7 +702,7 @@ $(function(){
                     <summary>
                       <span data-css-icon="down fill">책소개<i></i></span>
                     </summary>
-                    <div id="detail">
+                    <div id="detail">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos minus quo ipsam culpa! Dicta, reiciendis.
                     </div>
                   </details>
                   <!-- 
@@ -735,8 +724,6 @@ $(function(){
                   style="float: left; margin-left: 50px;">
                   <span>바로 대여</span>
                 </button>
-                
-                
                 
              <!-- 모달 다이얼로그 모음 -->
              
@@ -770,8 +757,6 @@ $(function(){
 				</table>
 				
 			</div>
-                
-             
                 <!--
               <table class="table table-hover">
                 <thead>
@@ -822,7 +807,6 @@ $(function(){
         <div class="col">
           <p>Copyright &copy;
             <span id="year"></span> Glozzom</p>
-            
         </div>
       </div>
     </div>
@@ -835,8 +819,6 @@ $(function(){
     crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
     crossorigin="anonymous"></script>
-    <script type="text/javascript"	src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-	<script type="text/javascript"	src="../jquery-ui-1.12.1/jquery-ui.min.js"></script>
 
   <script>
     // Get the current year for the copyright

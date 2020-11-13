@@ -35,9 +35,11 @@ public class DetailBookController {
 		this.fdao = fdao;
 	}
 	@RequestMapping("/detailBook.do")
-	public void list(int b_no, Model model, HttpServletRequest request) {
+	public void list(int b_no, Model model, HttpServletRequest request,HttpServletRequest session) {
 		//int cust_no = (int)session.getAttribute("cust_no");
 		HashMap map = new HashMap();
+		//int cust_no = 1;
+
 		//map.put("cust_no",cust_no);
 		model.addAttribute("b", dao.findByNo(b_no));
 		model.addAttribute("bs", dao2.findByNo());

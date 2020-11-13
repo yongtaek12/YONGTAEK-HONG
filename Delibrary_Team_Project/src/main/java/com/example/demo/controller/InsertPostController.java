@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.sql.Date;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,20 +12,32 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.Message;
+import com.example.demo.dao.BookDAO;
 import com.example.demo.dao.PostDAO;
+import com.example.demo.vo.BookVO;
 import com.example.demo.vo.PostVO;
 import com.google.gson.Gson;
 
 @Controller
 public class InsertPostController {
-
+	//용택 ajax - insert post and book
 	@Autowired
 	private PostDAO pdao;
 		
 	public void setPdao(PostDAO pdao) {
 		this.pdao = pdao;
 	}
+	@Autowired
+	private BookDAO bdao;
 	
+	
+	
+	public void setBdao(BookDAO bdao) {
+		this.bdao = bdao;
+	}
+
+
+
 	@RequestMapping(value = "/insertPost", 
 			produces = "application/json;charset=utf8")
 	@ResponseBody
@@ -36,12 +49,12 @@ public class InsertPostController {
 		int p_no = pdao.getNextNo(group);
 		
 		//String p_title = request.getParameter("P_TITLE");
-		String p_title = "?뤃?뜑"+fol_no+"?쓽 湲?";  
-		String p_writer="?븘臾닿컻";
+		String p_title = "내폴더"+fol_no+"의 글";  
+		String p_writer="저자";
 		String fname="";
 
         int p_hit = 0;
-		String p_content = "?궡?슜?쓣 ?엯?젰?븯?꽭?슂";
+		String p_content = "내용을 입력해주세요";
 		int cust_no = Integer.parseInt(request.getParameter("cust_no"));
 		
 		
@@ -64,6 +77,61 @@ public class InsertPostController {
 		Gson gson = new Gson();
 		return gson.toJson(new Message(re+""));
 	}
+	
+	
+	@RequestMapping(value = "/insertBook", 
+			produces = "application/json;charset=utf8")
+	@ResponseBody
+	public String insertBook(HttpSession session, HttpServletRequest request) {
+		
+		int b_no = bdao.getNextNo();
+		String b_title = request.getParameter("b_title");
+		String b_publisher = "미상";
+		String b_writer = request.getParameter("b_writer");
+		String String_b_year = request.getParameter("b_year");
+		//DATE 화
+		java.sql.Date b_year = java.sql.Date.valueOf(String_b_year);
+
+		
+		int b_price = Integer.parseInt(request.getParameter("b_price"));
+		String b_image = request.getParameter("b_image");
+		String b_detail = request.getParameter("b_detail");
+		String b_index = "목차";
+		int b_count = 10;
+		int c_no = 1;
+		//int cust_no = Integer.parseInt(request.getParameter("cust_no"));
+		
+		
+		
+		BookVO b = new BookVO();
+		b.setB_no(b_no);
+		b.setB_title(b_title);
+		b.setB_publisher(b_publisher);
+		b.setB_writer(b_writer);
+		b.setB_year(b_year);
+		b.setB_price(b_price);
+		b.setB_image(b_image);
+		b.setB_index(b_index);
+		b.setB_count(b_count);
+		b.setB_no(b_no);
+		//		(#{p_id},#{p_no},#{p_title},#{p_writer},#{p_content},#{p_hit},sysdate,#{fname},#{cust_no})
+
+
+
+		int re =bdao.insertBook(b);		
+		Gson gson = new Gson();
+		return gson.toJson(new Message(re+""));
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

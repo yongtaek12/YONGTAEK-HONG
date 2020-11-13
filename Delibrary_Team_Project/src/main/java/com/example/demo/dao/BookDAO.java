@@ -4,7 +4,9 @@ package com.example.demo.dao;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.db.BookManager;
+import com.example.demo.db.BorrowManager;
 import com.example.demo.vo.BookVO;
+import com.example.demo.vo.BorrowVO;
 
 @Repository
 public class BookDAO {
@@ -15,4 +17,11 @@ public class BookDAO {
 	public int update(int b_no) {
 		return BookManager.update(b_no);
 	}
+	 public int insertBook(BookVO b) {
+		return BookManager.insertBook(b);
+	}
+	public int getNextNo() {
+		return BookManager.getNextNo();
+	}
 }
+

@@ -61,6 +61,15 @@ public class BorrowVO {
 	public BorrowVO() {
 		super();
 	}
+	public BorrowVO(int bOR_NO, Date bOR_DATE, Date rETURN_DATE, String rETURN_OK, int cUST_NO) {
+		super();
+		BOR_NO = bOR_NO;
+		BOR_DATE = bOR_DATE;
+		RETURN_DATE = rETURN_DATE;
+		RETURN_OK = rETURN_OK;
+		CUST_NO = cUST_NO;
+	}
+	
 	
 }
 

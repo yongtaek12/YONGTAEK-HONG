@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import com.example.demo.vo.BookVO;
 import com.example.demo.vo.BookstoreVO;
+import com.example.demo.vo.BorrowVO;
 
 
 
@@ -57,8 +58,21 @@ public static SqlSessionFactory sqlSessionFactory;
 		session.close();
 		return re;
 	}
-
-
+	
+	public static int insertBook(BookVO b) {
+		int re = -1;
+		SqlSession session = sqlSessionFactory.openSession(true);
+		re = session.insert("book.insertBook",b);
+		session.close();
+		return re;
+	}
+	public static int getNextNo() {
+		int n = -1;
+		SqlSession session = sqlSessionFactory.openSession();
+		n = session.selectOne("book.getNextNo");
+		session.close();
+		return n;
+	}
 
 
 
