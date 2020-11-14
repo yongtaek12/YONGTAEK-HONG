@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import java.sql.Date;
 import java.util.HashMap;
+import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -20,7 +21,7 @@ import com.google.gson.Gson;
 
 @Controller
 public class InsertPostController {
-	//¿ëÅÃ ajax - insert post and book
+	//ìš©íƒ ajax - insert post and book
 	@Autowired
 	private PostDAO pdao;
 		
@@ -49,12 +50,12 @@ public class InsertPostController {
 		int p_no = pdao.getNextNo(group);
 		
 		//String p_title = request.getParameter("P_TITLE");
-		String p_title = "³»Æú´õ"+fol_no+"ÀÇ ±Û";  
-		String p_writer="ÀúÀÚ";
+		String p_title = "ë‚´ì„œì¬ì˜"+fol_no+"ê¸€";  
+		String p_writer="ì•Œìˆ˜ì—†ìŒ";
 		String fname="";
 
         int p_hit = 0;
-		String p_content = "³»¿ëÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä";
+		String p_content = "ë‚´ìš©ì„ ì…ë ¥í•´ì£¼ì„¸ìš”";
 		int cust_no = Integer.parseInt(request.getParameter("cust_no"));
 		
 		
@@ -78,7 +79,7 @@ public class InsertPostController {
 		return gson.toJson(new Message(re+""));
 	}
 	
-	
+	//ëŒ€ì—¬ì‹œ ì¶”ê°€ë˜ëŠ” ì±…
 	@RequestMapping(value = "/insertBook", 
 			produces = "application/json;charset=utf8")
 	@ResponseBody
@@ -86,22 +87,32 @@ public class InsertPostController {
 		
 		int b_no = bdao.getNextNo();
 		String b_title = request.getParameter("b_title");
-		String b_publisher = "¹Ì»ó";
+		String b_publisher = "ì•Œìˆ˜ì—†ìŒ";
 		String b_writer = request.getParameter("b_writer");
 		String String_b_year = request.getParameter("b_year");
-		//DATE È­
-		java.sql.Date b_year = java.sql.Date.valueOf(String_b_year);
+		//2015-12-07T00:00:00.000+09:00 ë‚˜ì™€ì„œ ë¶„ë¦¬ ì‹œì¼œì„œ dbì— ë„£ì–´ì•¼í•œë‹¤.
+		StringTokenizer tokenizer = new StringTokenizer(String_b_year, "T");
+		String firstToken = tokenizer.nextToken();
+
+		//DATE ë³€í™˜
+		java.sql.Date b_year = java.sql.Date.valueOf(firstToken);
+
+
 
 		
 		int b_price = Integer.parseInt(request.getParameter("b_price"));
+
 		String b_image = request.getParameter("b_image");
-		String b_detail = request.getParameter("b_detail");
-		String b_index = "¸ñÂ÷";
+		String b_detail = ""+request.getParameter("b_detail");
+
+		System.out.println("ê°’ì„ ë°›ì•„ì˜µë‹ˆë‹¤++"+b_detail);
+
+		String b_index = "ëª©ì°¨";
 		int b_count = 10;
-		int c_no = 1;
-		//int cust_no = Integer.parseInt(request.getParameter("cust_no"));
+
 		
-		
+		//values(#{b_no},#{b_title},#{b_publisher},#{b_writer},#{b_year},#{b_price},#{b_image},#{b_detail})
+
 		
 		BookVO b = new BookVO();
 		b.setB_no(b_no);
@@ -111,10 +122,10 @@ public class InsertPostController {
 		b.setB_year(b_year);
 		b.setB_price(b_price);
 		b.setB_image(b_image);
+		b.setB_detail(b_detail);
 		b.setB_index(b_index);
 		b.setB_count(b_count);
-		b.setB_no(b_no);
-		//		(#{p_id},#{p_no},#{p_title},#{p_writer},#{p_content},#{p_hit},sysdate,#{fname},#{cust_no})
+		b.setC_no(1);
 
 
 
@@ -148,13 +159,13 @@ public class InsertPostController {
 		int cust_no = Integer.parseInt(request.getParameter("CUST_NO"));
 		int fol_no = Integer.parseInt(request.getParameter("FOL_NO"));
 		String ML_TITLE = request.getParameter("ML_TITLE");
-		//?˜„?¬?‹œê°? ê°?? ¸?˜¤ê¸?
+		//?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½? ï¿½??ï¿½ï¿½?ï¿½ï¿½ï¿½?
 	    java.util.Calendar cal = java.util.Calendar.getInstance(); 
-		//?˜•ë³??™˜ ê°?? ¸?˜¤ê¸?
+		//?ï¿½ï¿½ï¿½??ï¿½ï¿½ ï¿½??ï¿½ï¿½?ï¿½ï¿½ï¿½?
         java.sql.Date ML_REGDATE = new java.sql.Date(cal.getTimeInMillis());
-        //?Š¤?Š¸ë§ì„ sql.Date ?˜•ë³??™˜
+        //?ï¿½ï¿½?ï¿½ï¿½ë§ì„ sql.Date ?ï¿½ï¿½ï¿½??ï¿½ï¿½
 		//java.sql.Date ML_REGDATE2 = java.sql.Date.valueOf(ML_REGDATE);
-		String ML_CONTENT = "?‚´?š©?„ ?…? ¥?•˜?„¸?š”";
+		String ML_CONTENT = "?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½";
 		String ML_FILE = "";
 		My_libraryVO m = new My_libraryVO();
 		m.setML_NO(ML_NO);
@@ -164,19 +175,19 @@ public class InsertPostController {
 		m.setML_REGDATE(ML_REGDATE);
 		m.setML_FILE(ML_FILE);	
 		m.setFol_no(fol_no);
-		System.out.println("?ˆ˜?‹ ?œ ?°?´?„°:"+m);
+		System.out.println("?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½:"+m);
 		int re =dao.insertMy_Library(m);		
 		Gson gson = new Gson();
 		return gson.toJson(new Message(re+""));
 	}
-	//?‚´?„œ?¬ ì¶œë ¥
+	//?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ì¶œë ¥
 	@RequestMapping(value = "/listMy_Library", 
 			produces = "application/json;charset=utf8")
 	@ResponseBody
 	public String listMy_Library(HttpSession session, HttpServletRequest request) {
 		Gson gson = new Gson();
 		int cust_no = Integer.parseInt(request.getParameter("cust_no"));
-		//System.out.println("?ˆ˜?‹ ?œ ?°?´?„°:"+cust_no);	
+		//System.out.println("?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½:"+cust_no);	
 		return gson.toJson(dao.findByCust_No(cust_no));
 	}
 	*/

@@ -53,7 +53,7 @@ public class BorrowController {
 	public String insertBorrow(HttpSession session, HttpServletRequest request)  {
 		
 		int cust_no = Integer.parseInt(request.getParameter("cust_no"));
-		int b_no = 20;
+		int b_no = 20;//bookdao.getNextNo();
 		String String_BOR_DATE = request.getParameter("BOR_DATE");
 		java.sql.Date BOR_DATE = java.sql.Date.valueOf(String_BOR_DATE);
 		Calendar cal = Calendar.getInstance();

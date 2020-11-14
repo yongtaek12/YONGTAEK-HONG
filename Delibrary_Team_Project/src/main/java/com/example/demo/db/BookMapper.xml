@@ -11,7 +11,7 @@
   
   	<insert id="insertBook" parameterType="bookVO">
 		insert into book
-		values(#{b_no},#{b_title},#{b_puplisher},#{b_writer},#{b_year},#{b_price},#{b_image},#{b_detail})
+		values(#{b_no},#{b_title},#{b_publisher},#{b_writer},#{b_year},#{b_price},#{b_image},#{b_detail},#{b_index},#{b_count},#{c_no})
 	</insert>
  
  	<!-- 대여시 책재고 감소 -->

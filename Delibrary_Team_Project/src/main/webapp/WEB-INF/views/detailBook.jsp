@@ -377,6 +377,14 @@ summary + * {
 //전역변수
 var FOL_NO =1;
 let cust_no = Number(${cust_no});
+//book for DB
+var b_image;
+var b_title;
+var b_writer="";
+var b_year;
+var b_price;
+var detail;
+
 
 //책소개 아코디안
   function setDetailsHeight(selector, wrapper = document) {
@@ -424,15 +432,47 @@ $(function(){
 				$('#b_year').text("출간일 : " + (msg.documents[0].datetime).substr(0, 10));
 				$('#b_price').text("가격 : " + msg.documents[0].price);
 				$('#detail').text(msg.documents[0].contents);
+				//변수처리
+				b_image = msg.documents[0].thumbnail
+				b_title = msg.documents[0].title
+				b_writer = msg.documents[0].authors
+				b_year = msg.documents[0].datetime
+				b_price = msg.documents[0].price
+				detail = msg.documents[0].contents
 			});
 	}
 	search();
-
+	//대여 누를시 책으로 저장하게함
+	var insertBook= function(){	
+		/*
+		b_image
+		b_title
+		b_writer
+		b_year
+		b_price
+		detail
+		
+		*/
+		alert(detail);
+		b_writer2 = JSON.stringify(b_writer);
+		
+		alert(typeof detail);
+		var data ={"b_writer":b_writer2,"b_image":b_image,"b_title":b_title,"b_year":b_year,"b_price":b_price,"b_detail":detail }
+		
+		$.ajax({
+			url:"insertBook",
+			dataType:"Json",
+			type:"POST",
+			data:data,
+			success:function(data){
+				console.log(data);
+				}
+			});
+		}
 
 	var insertPost = function(){
 		
 		var P_TITLE="${b.b_title }";
-		
 		//폴더값 가져와지는지 확인용
 		//alert(P_TITLE)
 		var data ={"FOL_NO":FOL_NO,"P_TITLE":P_TITLE,"cust_no":cust_no }
@@ -487,7 +527,6 @@ $(function(){
 		$('#dialog-borrow').dialog({
 		modal: true, 
 		buttons: {
-				
 			
 			"대출하고싶어요": function() {
 				//대여 날짜를 선택
@@ -526,6 +565,7 @@ $(function(){
 									});	
 							}
 								//alert("대여완료")
+								insertBook();
 								$( this ).dialog( "close" );								
 							}				
 					}										
@@ -539,7 +579,7 @@ $(function(){
 		//var result = confirm('내서재에 추가하시겠습니까??'); 
 			//if(result){
 				//var cust_no =eval(${cust_no });
-			
+
 			
 			
 								
@@ -692,12 +732,12 @@ $(function(){
                 </div>
                 <div class="card">
                   <div class="card-body">
-                      <h4 class="card-title" id="b_title">책제목 : </h4>
-                      <p class="card-text" id="b_writer">저자 : </p>
-                      <p class="card-text" id="b_year">출간일 : </p>
-                      <p class="card-text">이용가능 서적 : ${bs.website }</p>
+                      <h4 class="card-title" id="b_title" name="f"></h4>
+                      <p class="card-text" id="b_writer"></p>
+                      <p class="card-text" id="b_year"></p>
+                      <p class="card-text">이용가능 서적 :<a href="www.kyobobook.co.kr"> www.kyobobook.co.kr </a></p>
                       <p class="card-text" id="b_price">가격 : </p>
-                      </p>
+                      
                   </div>
                 </div>
 

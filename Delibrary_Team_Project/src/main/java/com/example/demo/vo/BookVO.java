@@ -43,6 +43,22 @@ public class BookVO {
 		this.b_count = b_count;
 		this.c_no = c_no;
 	}
+	
+
+	public BookVO(int b_no, String b_title, String b_publisher, String b_writer, Date b_year, int b_price,
+			String b_image, String b_detail, String b_index, int b_count) {
+		super();
+		this.b_no = b_no;
+		this.b_title = b_title;
+		this.b_publisher = b_publisher;
+		this.b_writer = b_writer;
+		this.b_year = b_year;
+		this.b_price = b_price;
+		this.b_image = b_image;
+		this.b_detail = b_detail;
+		this.b_index = b_index;
+		this.b_count = b_count;
+	}
 
 	public int getB_no() {
 		return b_no;
