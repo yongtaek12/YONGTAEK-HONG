@@ -24,7 +24,7 @@ public static SqlSessionFactory sqlSessionFactory;
 		sqlSessionFactory =
 		  new SqlSessionFactoryBuilder().build(inputStream);
 		}catch (Exception e) {
-			System.out.println("¿¹¿Ü¹ß»ý:"+e.getMessage());
+			System.out.println("ï¿½ï¿½ï¿½Ü¹ß»ï¿½:"+e.getMessage());
 		}
 	}
 	
@@ -49,7 +49,7 @@ public static SqlSessionFactory sqlSessionFactory;
 		session.close();
 		return bs;
 	}
-	//Ã¥Àç°í °¨¼Ò
+	//Ã¥ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public static int update(int b_no) {
 		int re = -1;
 		SqlSession session
@@ -73,7 +73,14 @@ public static SqlSessionFactory sqlSessionFactory;
 		session.close();
 		return n;
 	}
-
+	//ëŒ€ì—¬ì‹œ ëŒ€ì—¬ ë„˜ë²„ ì‚½ìž…
+	public static int getNextNo2() {
+		int n = -1;
+		SqlSession session = sqlSessionFactory.openSession();
+		n = session.selectOne("book.getNextNo2");
+		session.close();
+		return n;
+	}
 
 
 }

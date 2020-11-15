@@ -18,10 +18,16 @@
   	<update id="updateBook">
   		update book set B_COUNT = B_COUNT-1 where B_NO=#{B_NO}
   	</update>
-  
+  	
+ 	<!-- 대여시 책 넘버 삽입 -->
   	<select id="getNextNo" resultType="java.lang.Integer">
 		select nvl(max(b_no),0)+1 from book
 	</select>
-  
+		
+ 	<!-- 대여시 대여 넘버 삽입 -->		
+		<select id="getNextNo2" resultType="java.lang.Integer">
+		select nvl(max(b_no),0) from book
+	</select>
+  	
   
 </mapper>

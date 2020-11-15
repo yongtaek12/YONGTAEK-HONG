@@ -38,12 +38,12 @@ public class DetailBookController {
 	public void list(int b_no, Model model, HttpServletRequest request,HttpServletRequest session) {
 		//int cust_no = (int)session.getAttribute("cust_no");
 		HashMap map = new HashMap();
-		//int cust_no = 1;
+		int cust_no = 1;
 
-		//map.put("cust_no",cust_no);
+		map.put("cust_no",cust_no);
 		model.addAttribute("b", dao.findByNo(b_no));
 		model.addAttribute("bs", dao2.findByNo());
-		//model.addAttribute("f",fdao.findByNo(map));		
+		model.addAttribute("f",fdao.findByNo(map));		
 		model.addAttribute("query", request.getParameter("query"));
 		System.out.println(request.getParameter("query"));
 	}

@@ -13,15 +13,20 @@ public class BookDAO {
 	public BookVO findByNo(int b_no) {
 		return BookManager.findByNo(b_no);
 	}
-	//´ë¿©ÇÏ¸é Ã¥Àç°í·® °¨¼Ò
+	//ï¿½ë¿©ï¿½Ï¸ï¿½ Ã¥ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public int update(int b_no) {
 		return BookManager.update(b_no);
 	}
 	 public int insertBook(BookVO b) {
 		return BookManager.insertBook(b);
 	}
+	 //ëŒ€ì—¬ì‹œ post ë²ˆí˜¸ì‚½ìž…
 	public int getNextNo() {
 		return BookManager.getNextNo();
+	}
+	//ëŒ€ì—¬ì‹œ ëŒ€ì—¬ ì±…ë²ˆí˜¸ ì‚½ìž…
+	public int getNextNo2() {
+		return BookManager.getNextNo2();
 	}
 }
 

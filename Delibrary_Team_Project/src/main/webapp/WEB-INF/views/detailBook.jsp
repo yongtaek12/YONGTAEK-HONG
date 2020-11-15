@@ -534,6 +534,8 @@ $(function(){
 					modal: true, 
 					buttons: {
 						"대출":function(){
+							insertBook();
+							
 							let BOR_DATE = document.getElementById("BOR_DATE").value
 							//let RETURN_DATE = BOR_DATE.setDate(BOR_DATE.getDate()+15);
 							//alert(RETURN_DATE);
@@ -565,7 +567,6 @@ $(function(){
 									});	
 							}
 								//alert("대여완료")
-								insertBook();
 								$( this ).dialog( "close" );								
 							}				
 					}										
