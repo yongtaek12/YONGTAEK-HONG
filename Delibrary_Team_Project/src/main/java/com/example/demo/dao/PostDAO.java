@@ -6,8 +6,10 @@ import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
+import com.example.demo.db.BookManager;
 import com.example.demo.db.DBManager;
 import com.example.demo.db.PostManager;
+import com.example.demo.vo.BookVO;
 import com.example.demo.vo.PostVO;
 
 @Repository
@@ -69,6 +71,9 @@ public class PostDAO {
 	public int insert2(PostVO p) {
 		return PostManager.insert2(p);
 	}
-	
+	//내서재 목록 출력
+	public List<PostVO> My_list(HashMap map){
+		return PostManager.My_list(map);
+	}
 	
 }

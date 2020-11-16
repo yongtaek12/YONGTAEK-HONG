@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import com.example.demo.vo.BookVO;
 import com.example.demo.vo.PostVO;
 
 
@@ -120,6 +121,16 @@ public class PostManager {
 		session.close();
 		return re;
 	}
+	
+	//내서재 출력
+	public static List<PostVO> My_list(HashMap map){
+		List<PostVO> list = null;
+		SqlSession session=sqlSessionFactory.openSession();
+		list=session.selectList("post.My_list", map);
+		session.close();
+		return list;
+	}
+	
 	
 //	public static int updateStep(HashMap map) {
 //		int re =  -1;

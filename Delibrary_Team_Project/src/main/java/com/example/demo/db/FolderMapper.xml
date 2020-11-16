@@ -6,6 +6,11 @@
   <select id="selectByNo" resultType="folderVO">
 select * from folder where ml_no = #{cust_no}  
 </select>
+
+<!-- 내서재 페이징처리 -->
+ <select id="pageByfolder" resultType="java.lang.Integer">
+select COUNT(*) from folder where ml_no = #{cust_no}  
+</select>
  
  <!-- 
   <update id="updateBook">

@@ -1,12 +1,17 @@
 package com.example.demo.dao;
 
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.db.BookManager;
 import com.example.demo.db.BorrowManager;
+import com.example.demo.db.PostManager;
 import com.example.demo.vo.BookVO;
 import com.example.demo.vo.BorrowVO;
+import com.example.demo.vo.PostVO;
 
 @Repository
 public class BookDAO {
@@ -27,6 +32,10 @@ public class BookDAO {
 	//대여시 대여 책번호 삽입
 	public int getNextNo2() {
 		return BookManager.getNextNo2();
+	}
+	//내서재 목록 출력
+	public List<BookVO> MyLibrary_list(HashMap map){
+		return BookManager.MyLibrary_list(map);
 	}
 }
 

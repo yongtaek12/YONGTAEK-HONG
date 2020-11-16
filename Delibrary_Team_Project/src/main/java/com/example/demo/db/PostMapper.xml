@@ -49,6 +49,11 @@
 	<delete id="delete">
 		delete from post where p_id=#{p_id} and cust_no=#{cust_no}
 	</delete>
+	
+	<!-- 용택 내서제 보기 상세보기 -->
+	<select id="My_list" resultType="postVO">
+		select * from post where cust_no=#{cust_no} and fol_no=#{fol_no}
+	</select>
 
 </mapper>
 

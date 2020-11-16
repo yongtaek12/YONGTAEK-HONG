@@ -1,6 +1,8 @@
 package com.example.demo.db;
 
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -10,6 +12,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import com.example.demo.vo.BookVO;
 import com.example.demo.vo.BookstoreVO;
 import com.example.demo.vo.BorrowVO;
+import com.example.demo.vo.PostVO;
 
 
 
@@ -80,6 +83,14 @@ public static SqlSessionFactory sqlSessionFactory;
 		n = session.selectOne("book.getNextNo2");
 		session.close();
 		return n;
+	}
+	//내서재 출력
+	public static List<BookVO> MyLibrary_list(HashMap map){
+		List<BookVO> list = null;
+		SqlSession session=sqlSessionFactory.openSession();
+		list=session.selectList("book.MyLibrary_list", map);
+		session.close();
+		return list;
 	}
 
 

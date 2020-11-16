@@ -30,9 +30,7 @@ public static SqlSessionFactory sqlSessionFactory;
 		}
 	}
 	
-	
-	
-	
+		
 	public static List<FolderVO> findByNo(HashMap map) {
 		List<FolderVO> f = null;
 		SqlSession session
@@ -40,6 +38,14 @@ public static SqlSessionFactory sqlSessionFactory;
 		f = session.selectList("folder.selectByNo",map);
 		session.close();
 		return f;
+	}
+	
+	public static int pageByfolder(int cust_no) {
+		int n = -1;
+		SqlSession session = sqlSessionFactory.openSession();
+		n = session.selectOne("folder.pageByfolder",cust_no);
+		session.close();
+		return n;
 	}
 	
 }

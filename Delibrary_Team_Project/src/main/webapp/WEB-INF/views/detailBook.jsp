@@ -24,6 +24,12 @@
   <title>도서정보 - 딜리브러리</title>
 	
   <style>
+    /* 마우스 갖다대면 효과*/
+  	.reverse {
+	color: white;
+	background-color: #58ACFA;
+	border-radius: 10px;
+	}
   
   
     /* 내서재 추가 / 바로대여*/
@@ -475,7 +481,7 @@ $(function(){
 		var P_TITLE="${b.b_title }";
 		//폴더값 가져와지는지 확인용
 		//alert(P_TITLE)
-		var data ={"FOL_NO":FOL_NO,"P_TITLE":P_TITLE,"cust_no":cust_no }
+		var data ={"FOL_NO":FOL_NO,"P_TITLE":P_TITLE,"cust_no":cust_no,"fname":b_image }
 		$.ajax({
 			url:"/insertPost",
 			dataType:"Json",
@@ -486,6 +492,7 @@ $(function(){
 				}
 			});
 		}
+	//마우스 갖다대면 파란색 하이라이트
 	$('.folder').mouseover(function() {
 		$(this).addClass("reverse",700);
 	}); 
@@ -508,12 +515,13 @@ $(function(){
 		}
 		
 		});
-		
-	$('.revers').mouseover(function() {
+	//마우스 갖다대면 파란색 하이라이트
+	
+	$('.card-text').mouseover(function() {
 		$(this).addClass("reverse",700);
 	}); 
 	
-	$('.revers').mouseleave(function() {
+	$('.card-text').mouseleave(function() {
 		$(this).removeClass("reverse",700);
 	});
 
@@ -654,7 +662,7 @@ $(function(){
 							<ul class="dropdown-menu dropdown-menu-left fade-down">
 								<li><a class="dropdown-item" href="mypage.html"> 나의도서정보</a></li>
 								<li><a class="dropdown-item" href="lentBooks.html">대출현황/이력</a></li>
-								<li><a class="dropdown-item" href="myfolder.html">내서재</a></li>
+								<li><a class="dropdown-item" href="Mylibrary.jsp">내서재</a></li>
 								<li><a class="dropdown-item" href="#">개인정보수정</a></li>
 							</ul>
 					</li>
@@ -713,7 +721,7 @@ $(function(){
 					<ul class="list-group list-group-flush mb-5">
 						<a href="#"><li class="list-group-item active">책상세보기</li></a>
 						<a href="#"><li class="list-group-item">대출현황/이력</li></a>
-						<a href="#"><li class="list-group-item">내서재</li></a>						
+						<a href="MyLibrary.do"><li class="list-group-item">내서재</li></a>						
 						<a href="#"><li class="list-group-item">개인정보수정</li></a>
 					</ul>
 			  </div>
