@@ -32,7 +32,7 @@ public class PostVO {
 		this.fol_no = fol_no;
 	}
 
-	//Ã¥»ó¼¼º¸±â post ³Ö±â
+	//ìš©íƒ fol_no ì¶”ê°€
 	public PostVO(int p_id, int p_no, String p_title, String p_writer, String p_content, int p_hit, Date p_regdate,
 			int cust_no, int fol_no, String fname) {
 		super();

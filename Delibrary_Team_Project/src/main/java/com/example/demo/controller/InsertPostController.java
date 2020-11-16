@@ -52,7 +52,7 @@ public class InsertPostController {
 		String fname = request.getParameter("fname");
 		String p_title = "내서재의"+fol_no+"글";  
 		String p_writer="알수없음";
-		System.out.println(" 내용 가지나??"+fname);
+		//System.out.println(" 내용 가지나??"+fname);
         int p_hit = 0;
 		String p_content = "내용을 입력해주세요";
 		int cust_no = Integer.parseInt(request.getParameter("cust_no"));

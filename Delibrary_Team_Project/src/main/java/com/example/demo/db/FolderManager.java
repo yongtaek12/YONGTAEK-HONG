@@ -30,7 +30,7 @@ public static SqlSessionFactory sqlSessionFactory;
 		}
 	}
 	
-		
+		//폴더 리스트 출력
 	public static List<FolderVO> findByNo(HashMap map) {
 		List<FolderVO> f = null;
 		SqlSession session
